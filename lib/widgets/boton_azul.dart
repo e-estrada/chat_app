@@ -20,6 +20,7 @@ class BotonAzul extends StatelessWidget {
         backgroundColor: Colors.blue
       ),
       onPressed: () => onPressed(),
+      // onPressed: null,
       child: SizedBox(
         width: double.infinity,
         height: 45,
