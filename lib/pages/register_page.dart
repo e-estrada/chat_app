@@ -1,7 +1,8 @@
 
-import 'package:chat_app/helpers/mostrar_alerta.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:chat_app/helpers/mostrar_alerta.dart';
+import 'package:chat_app/services/socket_service.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/widgets/widgets.dart';
 
@@ -56,6 +57,7 @@ class __FormState extends State<_Form> {
   Widget build(BuildContext context) {
 
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       margin: const EdgeInsets.only(top: 40),
@@ -89,6 +91,7 @@ class __FormState extends State<_Form> {
                final registroOk = await authService.register(nameCtrl.text.trim(), emailCtrl.text.trim(), passCtrl.text.trim());
 
                if ( registroOk == true ) {
+                socketService.connect();
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacementNamed(context, 'usuarios');
                } else {
